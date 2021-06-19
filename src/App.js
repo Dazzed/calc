@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { Component } from "react";
 import styled from "styled-components";
+import Button from "./Components/Button"
 import KeyPad from "./Components/Keypad";
 import CalculatorCommands from "./Components/CalculatorCommands";
 import CalculatorDisplay from "./Components/CalculatorDisplay";
@@ -20,22 +21,8 @@ const Calculator = styled.div`
   margin: 0 auto;
   background-color: white;
 `
-const CalculateButton = styled.button`
-  padding: 20px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 22px;
-  cursor: pointer;
-  width: 100%;
-  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+const CalculateButton = styled(Button)`
   background-color: rgb(52, 58, 65);
-  &:active {
-    transform: scale(0.98);
-    /* Scaling button to 0.98 to its original size */
-    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
-    /* Lowering the shadow */
-  }
 `
 class App extends Component {
   state = {
