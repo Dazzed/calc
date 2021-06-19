@@ -1,9 +1,42 @@
 import "./App.css";
 import React, { Component } from "react";
+import styled from "styled-components";
 import KeyPad from "./Components/Keypad";
 import CalculatorCommands from "./Components/CalculatorCommands";
 import CalculatorDisplay from "./Components/CalculatorDisplay";
 
+const CalculatorWrapper = styled.div`
+  background-color: rgb(246, 244, 239);
+  height: 100vh;
+`
+const CalculatorTitle = styled.h1`
+  padding-top: 100px;
+  text-align: center;
+  margin-top: 0;
+`
+const Calculator = styled.div`
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+`
+const CalculateButton = styled.button`
+  padding: 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 22px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  background-color: rgb(52, 58, 65);
+  &:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+  }
+`
 class App extends Component {
   state = {
     firstValue: "",
@@ -14,12 +47,11 @@ class App extends Component {
   };
 
   onNumberClick = (event) => {
-    console.log(this.state.activeInput);
-    if (this.state.activeInput == "firstValue") {
-      this.setState({ firstValue: this.state.firstValue + event.target.value });
+    if (this.state.activeInput === "firstValue") {
+      this.setState({ firstValue: parseInt(this.state.firstValue + event.target.value) });
     } else {
       this.setState({
-        secondValue: this.state.secondValue + event.target.value,
+        secondValue: parseInt(this.state.secondValue + event.target.value),
       });
     }
   };
@@ -32,7 +64,7 @@ class App extends Component {
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: parseInt(event.target.value),
     });
   };
 
@@ -57,14 +89,18 @@ class App extends Component {
           resultValue: firstValue - secondValue,
         });
         break;
+      default:
+        this.setState({
+          resultValue: firstValue + secondValue,
+        });
     }
   };
 
   render() {
     return (
-      <main className="app">
-        <h1 className="title">Suzy's Calculator</h1>
-        <div className="calculator">
+      <CalculatorWrapper>
+        <CalculatorTitle>Suzy's Calculator</CalculatorTitle>
+        <Calculator>
           <CalculatorDisplay
             {...this.state}
             handleChange={this.handleChange}
@@ -74,14 +110,13 @@ class App extends Component {
           <KeyPad onNumberClick={this.onNumberClick} />
           <hr />
           <CalculatorCommands onCommandClick={this.onCommandClick} />
-          <button
-            className="calculator-button calculator-enter-button"
+          <CalculateButton
             onClick={() => this.calculate()}
           >
             Calculate!
-          </button>
-        </div>
-      </main>
+          </CalculateButton>
+        </Calculator>
+      </CalculatorWrapper>
     );
   }
 }
