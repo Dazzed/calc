@@ -6,22 +6,30 @@ const CalculatorDisplay = (props) => {
       <input
         className="display_number"
         type="number"
-        name="first"
+        name="firstValue"
+        value={props.firstValue}
         placeholder="0"
+        onChange={(event) => props.handleChange(event)}
+        onFocus={(event) => props.changeFocus(event)}
       />
       <div className="display_command">{props.commandSign}</div>
       <input
         className="display_number"
         type="number"
-        name="second"
+        name="secondValue"
+        value={props.secondValue}
         placeholder="0"
+        onChange={(event) => props.handleChange(event)}
+        onFocus={(event) => props.changeFocus(event)}
       />
       <div className="display_equal">=</div>
       <input
         className="display_number"
         type="number"
-        name="result"
+        name="resultValue"
         placeholder="0"
+        value={props.resultValue}
+        readOnly
       />
     </div>
   );
