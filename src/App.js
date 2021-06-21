@@ -37,11 +37,11 @@ class App extends Component {
   onNumberClick = (event) => {
     if (this.state.activeInput === 'firstValue') {
       this.setState({
-        firstValue: parseInt(this.state.firstValue + event.target.value),
+        firstValue: this.state.firstValue + event.target.value,
       })
     } else {
       this.setState({
-        secondValue: parseInt(this.state.secondValue + event.target.value),
+        secondValue: this.state.secondValue + event.target.value,
       })
     }
   }
