@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components"
-import Button from "../Components/Button"
+import React from 'react'
+import styled from 'styled-components'
+import Button from 'Components/Button'
 
 const CalculatorButtonsWrapper = styled.div`
   padding: 16px 0;
@@ -12,27 +12,28 @@ const CalculatorButtonsWrapper = styled.div`
 const CalculatorButton = styled(Button)`
   background-color: rgb(236, 97, 59);
   &:last-child {
-    grid-column: 2 / 3;    
+    grid-column: 2 / 3;
   }
 `
 
-const KeyPad = (props) => {
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  let buttons = [];
+const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-  for (let num of numbers) {
-    buttons.push(
-      <CalculatorButton
-        key={num}
-        onClick={(event) => props.onNumberClick(event)}
-        value={num}
-      >
-        {num}
-      </CalculatorButton>
-    );
-  }
+function KeyPad({ onNumberClick }) {
+  let buttons = React.useMemo(
+    () =>
+      numbers.map((num) => (
+        <CalculatorButton
+          key={num}
+          onClick={(event) => onNumberClick(event)}
+          value={num}
+        >
+          {num}
+        </CalculatorButton>
+      )),
+    [onNumberClick]
+  )
 
-  return <CalculatorButtonsWrapper>{buttons}</CalculatorButtonsWrapper>;
-};
+  return <CalculatorButtonsWrapper>{buttons}</CalculatorButtonsWrapper>
+}
 
-export default KeyPad;
+export default KeyPad

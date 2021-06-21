@@ -1,10 +1,10 @@
-import "./App.css";
-import React, { Component } from "react";
-import styled from "styled-components";
-import Button from "./Components/Button"
-import KeyPad from "./Components/Keypad";
-import CalculatorCommands from "./Components/CalculatorCommands";
-import CalculatorDisplay from "./Components/CalculatorDisplay";
+import './App.css'
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import Button from 'Components/Button'
+import KeyPad from 'Components/Keypad'
+import CalculatorCommands from 'Components/CalculatorCommands'
+import CalculatorDisplay from 'Components/CalculatorDisplay'
 
 const CalculatorWrapper = styled.div`
   background-color: rgb(246, 244, 239);
@@ -24,64 +24,67 @@ const Calculator = styled.div`
 const CalculateButton = styled(Button)`
   background-color: rgb(52, 58, 65);
 `
+
 class App extends Component {
   state = {
-    firstValue: "",
-    secondValue: "",
-    resultValue: "",
-    commandSign: "+",
-    activeInput: "firstValue",
-  };
+    firstValue: '',
+    secondValue: '',
+    resultValue: '',
+    commandSign: '+',
+    activeInput: 'firstValue',
+  }
 
   onNumberClick = (event) => {
-    if (this.state.activeInput === "firstValue") {
-      this.setState({ firstValue: parseInt(this.state.firstValue + event.target.value) });
+    if (this.state.activeInput === 'firstValue') {
+      this.setState({
+        firstValue: parseInt(this.state.firstValue + event.target.value),
+      })
     } else {
       this.setState({
         secondValue: parseInt(this.state.secondValue + event.target.value),
-      });
+      })
     }
-  };
+  }
 
   onCommandClick = (event) => {
     this.setState({
       commandSign: event.target.value,
-    });
-  };
+    })
+  }
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: parseInt(event.target.value),
-    });
-  };
+    })
+  }
 
   changeFocus = (event) => {
     this.setState({
       activeInput: event.target.name,
-    });
-  };
+    })
+  }
 
   calculate = () => {
-    let firstValue = parseInt(this.state.firstValue);
-    let secondValue = parseInt(this.state.secondValue);
+    let firstValue = parseInt(this.state.firstValue)
+    let secondValue = parseInt(this.state.secondValue)
 
     switch (this.state.commandSign) {
-      case "+":
+      case '+':
         this.setState({
           resultValue: firstValue + secondValue,
-        });
-        break;
-      case "-":
+        })
+        break
+      case '-':
         this.setState({
           resultValue: firstValue - secondValue,
-        });
-        break;
+        })
+        break
       default:
         this.setState({
           resultValue: firstValue + secondValue,
-        });
+        })
     }
-  };
+  }
 
   render() {
     return (
@@ -97,15 +100,13 @@ class App extends Component {
           <KeyPad onNumberClick={this.onNumberClick} />
           <hr />
           <CalculatorCommands onCommandClick={this.onCommandClick} />
-          <CalculateButton
-            onClick={() => this.calculate()}
-          >
+          <CalculateButton onClick={() => this.calculate()}>
             Calculate!
           </CalculateButton>
         </Calculator>
       </CalculatorWrapper>
-    );
+    )
   }
 }
 
-export default App;
+export default App

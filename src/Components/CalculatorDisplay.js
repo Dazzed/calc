@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const DisplayWrapper = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const CalculatorInput = styled.input`
   -moz-appearance: textfield;
 `
 
-const CalculatorDisplay = (props) => {
+function CalculatorDisplay(props) {
   return (
     <DisplayWrapper>
       <CalculatorInput
@@ -56,7 +56,7 @@ const CalculatorDisplay = (props) => {
         readOnly
       />
     </DisplayWrapper>
-  );
-};
+  )
+}
 
-export default CalculatorDisplay;
+export default CalculatorDisplay

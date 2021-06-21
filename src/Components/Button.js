@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const GenericButton = styled.button`
   padding: 20px;
@@ -17,8 +17,17 @@ const GenericButton = styled.button`
     /* Lowering the shadow */
   }
 `
-const Button = (props) => {
-   return <GenericButton className={props.className} onClick={props.onClick} value={props.value}>{props.children}</GenericButton>;
-};
-  
-export default Button;
+
+function Button(props) {
+  return (
+    <GenericButton
+      className={props.className}
+      onClick={props.onClick}
+      value={props.value}
+    >
+      {props.children}
+    </GenericButton>
+  )
+}
+
+export default Button
