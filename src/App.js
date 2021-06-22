@@ -37,11 +37,11 @@ class App extends Component {
   onNumberClick = (event) => {
     if (this.state.activeInput === 'firstValue') {
       this.setState({
-        firstValue: this.state.firstValue + event.target.value,
+        firstValue: Number(this.state.firstValue + event.target.value),
       })
     } else {
       this.setState({
-        secondValue: this.state.secondValue + event.target.value,
+        secondValue: Number(this.state.secondValue + event.target.value),
       })
     }
   }
@@ -54,7 +54,7 @@ class App extends Component {
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: parseInt(event.target.value),
+      [event.target.name]: Number(event.target.value),
     })
   }
 
@@ -65,8 +65,8 @@ class App extends Component {
   }
 
   calculate = () => {
-    let firstValue = parseInt(this.state.firstValue)
-    let secondValue = parseInt(this.state.secondValue)
+    let firstValue = Number(this.state.firstValue)
+    let secondValue = Number(this.state.secondValue)
 
     switch (this.state.commandSign) {
       case '+':
@@ -100,7 +100,7 @@ class App extends Component {
           <KeyPad onNumberClick={this.onNumberClick} />
           <hr />
           <CalculatorCommands onCommandClick={this.onCommandClick} />
-          <CalculateButton onClick={() => this.calculate()}>
+          <CalculateButton onClick={() => this.calculate()} value="calculate">
             Calculate!
           </CalculateButton>
         </Calculator>

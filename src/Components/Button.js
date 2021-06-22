@@ -21,6 +21,7 @@ const GenericButton = styled.button`
 function Button(props) {
   return (
     <GenericButton
+      data-testid={`button-${props.value}`}
       className={props.className}
       onClick={props.onClick}
       value={props.value}

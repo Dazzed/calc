@@ -31,6 +31,7 @@ function CalculatorDisplay(props) {
   return (
     <DisplayWrapper>
       <CalculatorInput
+        data-testid="firstValue"
         type="number"
         name="firstValue"
         value={props.firstValue}
@@ -38,8 +39,11 @@ function CalculatorDisplay(props) {
         onChange={(event) => props.handleChange(event)}
         onFocus={(event) => props.changeFocus(event)}
       />
-      <CommandOperation>{props.commandSign}</CommandOperation>
+      <CommandOperation data-testid="operator">
+        {props.commandSign}
+      </CommandOperation>
       <CalculatorInput
+        data-testid="secondValue"
         type="number"
         name="secondValue"
         value={props.secondValue}
@@ -49,6 +53,7 @@ function CalculatorDisplay(props) {
       />
       <CommandEqual>=</CommandEqual>
       <CalculatorInput
+        data-testid="resultValue"
         type="number"
         name="resultValue"
         placeholder="0"
